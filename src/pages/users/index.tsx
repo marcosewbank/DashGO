@@ -12,13 +12,21 @@ import {
   Tbody,
   Checkbox,
   Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
+
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { Pagination } from "../../components/Pagination";
+import Link from "next/link";
 
 export default function UserList() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   return (
     <Box>
       <Header />
@@ -31,30 +39,32 @@ export default function UserList() {
             <Heading size="large" fontWeight="normal">
               Users
             </Heading>
-            <Button
-              as="a"
-              size="sm"
-              fontSize="sm"
-              colorScheme="pink"
-              leftIcon={<Icon as={RiAddLine} fontSize="20" />}
-            >
-              Create New
-            </Button>
+            <Link href="/users/create" passHref>
+              <Button
+                as="a"
+                size="sm"
+                fontSize="sm"
+                colorScheme="pink"
+                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+              >
+                Create New
+              </Button>
+            </Link>
           </Flex>
           <Table colorScheme="whiteAlpha">
             <Thead>
               <Tr>
-                <Th px="6" color="gray.300" width="8">
+                <Th px={["4", "4", "6"]} color="gray.300" width="8">
                   <Checkbox colorScheme="pink" />
                 </Th>
                 <Th>Users</Th>
                 <Th>Sign in date</Th>
-                <Th width="8"></Th>
+                {/* <Th width="8"></Th> */}
               </Tr>
             </Thead>
             <Tbody>
               <Tr>
-                <Td px="6">
+                <Td px={["4", "4", "6"]}>
                   <Checkbox colorScheme="pink" />
                 </Td>
                 <Td>
@@ -65,8 +75,8 @@ export default function UserList() {
                     </Text>
                   </Box>
                 </Td>
-                <Td>April 01, 2021</Td>
-                <Td>
+                {isWideVersion && <Td>April 01, 2021</Td>}
+                {/* <Td>
                   <Button
                     as="a"
                     size="sm"
@@ -74,61 +84,9 @@ export default function UserList() {
                     colorScheme="purple"
                     leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
                   >
-                    Edit
+                    {isWideVersion && "Edit"}
                   </Button>
-                </Td>
-              </Tr>
-
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="pink" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold"> Marcos Ewbank</Text>
-                    <Text fontSize="sm" color="gray.300">
-                      ewbankmarcos@gmail.com
-                    </Text>
-                  </Box>
-                </Td>
-                <Td>April 01, 2021</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                  >
-                    Edit
-                  </Button>
-                </Td>
-              </Tr>
-
-              <Tr>
-                <Td px="6">
-                  <Checkbox colorScheme="pink" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold"> Marcos Ewbank</Text>
-                    <Text fontSize="sm" color="gray.300">
-                      ewbankmarcos@gmail.com
-                    </Text>
-                  </Box>
-                </Td>
-                <Td>April 01, 2021</Td>
-                <Td>
-                  <Button
-                    as="a"
-                    size="sm"
-                    fontSize="sm"
-                    colorScheme="purple"
-                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                  >
-                    Edit
-                  </Button>
-                </Td>
+                </Td> */}
               </Tr>
             </Tbody>
           </Table>
